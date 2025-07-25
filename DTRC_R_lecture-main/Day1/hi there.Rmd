@@ -1,0 +1,55 @@
+---
+title: "first R"
+author: "EH J"
+date: "`r Sys.Date()`"
+output: html_document
+---
+#working directory setup
+```{r}
+setwd("C:/Users/eunhong/Desktop/github_repo/Rstudy/DTRC_R_lecture-main/Day1")
+```
+
+#load library
+```{r}
+library("tidyverse")
+```
+```{r}
+a <-2
+a
+rm(a)
+b <-3
+rm(b)
+a+b
+b-a
+a==b
+```
+# 다양한 방법으로 백터 만들기, 합치기, 조합하기
+```{r}
+vector_1 <- c(1,2,3,4,5)
+
+vector_1
+a <-1
+b <-2
+c <-2
+a+b+c
+vector_2<- c(a,b,c,4,5)
+vector_2
+vector_3<- c(a,b,4,5,c)
+vector_3
+class(vector_3)
+```
+```{r}
+a<-"1"
+vector_4 <- c(a,a,a)
+class(vector_4)
+```
+
+
+
+
+
+
+
+
+
+
