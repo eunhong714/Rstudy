@@ -43,11 +43,78 @@ a<-"1"
 vector_4 <- c(a,a,a)
 class(vector_4)
 ```
+#practice3
+```{r}
+x1 <- seq(1,10)
+x2 <- seq(1,10,2)
+x3 <- rep(1,5)
+x4 <- rep(c(1,2,3),3)
+
+wt <- rep("WT",5)
+ko <- rep("KO",5)
+```
+
+# TSV 파일 읽어들여서 데이터프레임으로 불러오기 
+
+```{r}
+eunhong <- read.table("./Example_data.txt",sep='\t')
+head(eunhong)
+eunhong
+head(eunhong)
+```
+```{r}
+inseo <- read.table("./Example_data.txt",sep='\t',header = T)
+head(inseo)
+```
+
+```{r}
+example <- read.table("./Example_data.txt", sep = '\t', header = TRUE, row.names = 1)
+example <- read.table("./Example_data.txt", sep = '\t', header = TRUE, row.names = 1, quote = "", fill = TRUE)
+example_raw <- read.table("./Example_data.txt", sep = "\t", header = TRUE, check.names = FALSE)
+duplicated(example_raw[,1])
+
+example <- read.table("./Example_data.txt", sep = "\t", header = TRUE)
+rownames(example) <- gsub("\\.", "_", make.unique(as.character(example[, 1])))
+example <- example[, -1]
+```
+
+```{r}
+ example <- read.table("./Example_data.txt",sep='\t')
+colnames(example) <- example[1,]
+example <- example[-1,]
+rownames(example) <- example[,1]
+rownames(example) <- make.unique(as.character(example[,1]))
+example <- example[,-1]
+rownames(example) <- gsub("\\.", "_", rownames(example))
+
+saveRDS(example, "./examplesave.rds")
+
+examplesave<- readRDS("./examplesave.rds")
+```
+
+```{r}
+eunhong <- read.csv("./Example_data.csv")
+eunhong <- read.csv("./Example_data.csv", header = T)
+rownames(eunhong) <- make.unique(as.character(eunhong[,1]))
+eunhong <- eunhong[,-1]
+rownames(eunhong) <- gsub("\\.","_", rownames(eunhong))
+head(eunhong)
+
+rownames(eunhong) <- gsub("\\.","_",make.unique(as.character(eunhong$Gene_name)))
+eunhong <- eunhong[,-2]
+```
 
 
-
-
-
+# 데이터 프래임 핸들링
+```{r}
+head(eunhong[1])
+head(eunhong$Status)
+expression <- eunhong[,5:10]
+head(expression)
+status <- eunhong$Status
+status <- as.data.frame(c(eunhong$Status, eunhong$Entry_name))
+status <- eunhong[, c("Status", "Entry_name")]
+```
 
 
 
