@@ -1,0 +1,85 @@
+---
+title: "R_practice1"
+output: html_document
+date: "2025-07-31"
+---
+```{r}
+setwd("C:/Users/EHIS/Desktop/Rstudy/DTRC_R_lecture-main/Day1")
+```
+
+# Test1
+
+```{r}
+a <- 2
+a
+b <- 3
+a < b
+a+b
+vector1 <- c(a,b,3,4,5)
+vector1
+class(vector1)
+h <- "3"
+d <- "4"
+vector2 <- c(h,d,h,d)
+class(vector2)
+```
+
+# table test
+```{r}
+example <- read.csv("./Example_data.csv")
+example <- read.csv("./Example_data.csv", header=T , row.names = 5)
+head(example)
+class(example)
+head(example$Entry)
+fold <- example[,12:13]
+head(fold)
+expression <- example[,5:10]
+cat("nrow is", nrow(expression))
+head((example$Gene_name))
+cat("length is", length(example$Gene_name))
+expression$Gene_name <- example$Gene_name
+head(expression)
+merge_table <- cbind(expression,fold)
+head(merge_table)
+expression <- subset(example,select=c("MCF7_1","MCF7_2","MCF7_3","Doxorubicin_1","Doxorubicin_2","Doxorubicin_3"))
+head(expression)
+head(fold)
+head(expression)
+fold <- subset(example,select=c("P.adjust","log2FC"))
+head(fold)
+fold.pval.05 <- subset(fold,fold$P.adjust <= 0.05)
+head(fold.pval.05)
+nrow(fold.pval.05)
+fold.pval.05.Fold1.2 <- subset(fold,fold$P.adjust <= 0.05 & (fold$log2FC >= log(1.2,2) | fold$log2FC <= -log(1.2,2) ))
+head(fold.pval.05.Fold1.2)
+nrow(fold.pval.05.Fold1.2)
+head(fold)
+library("tidyverse")
+library("reshape2")
+fold <- rownames_to_column(fold, var="Accession")
+fold <- column_to_rownames(fold, var="Accession")
+head(fold)
+head(expression)
+expression <- rownames_to_column(expression,var="Accession")
+head(expression)
+expression_melt <- melt(expression)
+head(expression_melt)
+subset(expression_melt, expression_melt$Accession =="Q09666")
+nrow(expression_melt)
+head(expression_melt)
+example5 <- read.table("./Example_data.txt",sep='\t')
+vector1 <- c(1,2,3,4,5)
+vector2 <- c(6,7,8,9,10)
+vecmerge <- rbind("vector1","vector2")
+vecmergec <- cbind("vecotr1","vector2")
+head(vecmergec)
+```
+
+```{r}
+head(expression)
+read.scv()
+```
+
+
+
+
