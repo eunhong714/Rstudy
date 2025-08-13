@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+output: html_document
+date: "2025-08-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+setwd("C:/Users/EHIS/Desktop/Rstudy/DTRC_R_lecture-main/Day2")
+```
+#Volaco plot
+```{r}
+library("tidyverse")
+library(dplyr)
+library(tidyr)
+FoldChange <- read.table("./FoldChange.csv", sep=',', header = T, row.names =1)
+head(FoldChange)
+FoldChange$difference <- "NO"
+head(FoldChange)
+```
+
