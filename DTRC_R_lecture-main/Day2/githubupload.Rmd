@@ -37,5 +37,43 @@ p1
 #ggrepel
 ```{r}
 library(ggrepel)
+p2 <- ggplot(data=FoldChange, aes(x=log2FC, y=-log10(pvalue), col=difference,label=Gene)) + 
+geom_point() +theme_classic() +
+scale_color_manual(values = c("#F8766D","gray","#00BFC4")) +
+geom_text_repel(color="black")
+p2
+```
+
+#label 붙이기
+```{r}
+FoldChange_label <- read.table("./FoldChange_label.csv", sep=',',header = T)
+head(FoldChange_label)
+FoldChange_label$difference = "No"
+head(FoldChange_label)
+FoldChange_label$difference[FoldChange_label$log2FC > log(1.2,2) & FoldChange_label$pvalue <0.05] <- "UP"
+FoldChange_label$difference[FoldChange_label$log2FC < -log(1.2,2) & FoldChange_label$pvaule < 0.05] <- "DOWN"
+head(FoldChange_label)
+FoldChange_label$Label[FoldChange_label$Label == "YES"] <- FoldChange_label$Gene[FoldChange_label$Label== "YES"]
+FoldChange_label$Label[FoldChange_label$Label =="NO"  ] <- NA
+head(FoldChange_label)
+rm(p3)
+p3 <- ggplot(data=FoldChange_label, aes(x=log2FC, y=-log10(pvalue), col=difference,label=Label)) + 
+geom_point() +theme_classic() +
+scale_color_manual(values = c("#F8766D","gray","#00BFC4")) +
+geom_text_repel(color="black")
+
+p3
+```
+
+#heat map
+```{r}
+install.packages("pheatmap")
+library(pheatmap)
+selet_DEPs <- read.table("./Select_Proteins_Normalized_abudance.txt",
+                         sep='\t',header = T,row.names = 1)
+head(selet_DEPs)
+pheatmap(selet_DEPs,scale="row",cluster_cols=FALSE,cluster_row=TRUE,
+        angle_col = c("0"),fontsize=12,fontsize_col = 20,legend = TRUE,
+        show_rownames=TRUE)
 ```
 
