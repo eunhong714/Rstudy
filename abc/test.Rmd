@@ -4,7 +4,7 @@ output: html_document
 date: "2025-07-31"
 ---
 ```{r}
-setwd("C:/Users/EHIS/Desktop/Rstudy/DTRC_R_lecture-main/Day1")
+setwd("C:/Users/EHIS/Desktop/abc/DTRC_R_lecture-main/Day1")
 ```
 
 # Test1

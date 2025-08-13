@@ -1,0 +1,12 @@
+---
+title: "Proteome study day 1"
+author: "EH J"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/eunhong/Desktop/github_repo/Rstudy/DTRC_R_lecture-main/Day1")
+library("tidyverse")
+```
